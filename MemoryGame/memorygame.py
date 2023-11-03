@@ -1,6 +1,5 @@
-import pygame, os, random
+import pygame, os, random, sys
 from pygame import mixer
-
 
 pygame.init()
 
@@ -38,7 +37,7 @@ bgImage = pygame.transform.scale(bgImage, (gameWidth, gameHeight))
 bgImageRect = bgImage.get_rect()
 
 #dispay the score
-
+font = pygame.font.Font(None, 36)
 
 
 # Create list of Memory Pictures
@@ -131,6 +130,9 @@ while gameLoop:
     if win == 1:
 
         gameLoop = False
+        # Ask the user if they want to play again
+
+
     
     pygame.display.update()
 
