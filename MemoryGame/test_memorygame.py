@@ -122,3 +122,47 @@ def test_prepare_game_assets():
         assert pictureRect.left == leftMargin + ((picSize + padding) * (i % gameColumns))
         assert pictureRect.top == topMargin + ((picSize + padding) * (i % gameRows))
 
+
+def test_game_loop(setup):
+
+    # Setup mocks 
+    pygame.event.get  = [pygame.MOUSEBUTTONDOWN]  
+    event.button = 1
+    event.pos = (50, 50) 
+
+    # Initialize
+    score = 0
+    hiddenImages = [False, False]
+    selection1 = None
+    selection2 = None
+
+    while gameLoop:
+    
+        # Test events
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            # Test collision
+            assert memPicsRect[0].collidepoint(event.pos) 
+
+            # Test selection logic
+            selection1 = 0
+            assert hiddenImages[selection1] is True
+
+            # Test scoring
+            selection2 = 1
+            assert score == 10
+            
+        # Test blit calls
+        assert screen.blit.call_count == len(memPics)
+
+        # Test selections reset
+        assert selection1 is None
+        assert selection2 is None
+
+        # Test win condition
+        assert all(hiddenImages) is True
+        break
+        
+    # Final asserts
+    assert screen
+    assert pygame.quit

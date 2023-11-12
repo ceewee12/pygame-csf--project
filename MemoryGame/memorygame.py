@@ -12,7 +12,6 @@ gameColumns = 5
 gameRows = 4
 padding = 10
 leftMargin = (gameWidth - ((picSize + padding) * gameColumns)) // 2
-print(leftMargin)
 rightMargin = leftMargin
 topMargin = (gameHeight - ((picSize + padding) * gameRows)) // 2
 bottomMargin = topMargin
