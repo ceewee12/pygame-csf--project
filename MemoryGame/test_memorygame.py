@@ -32,7 +32,7 @@ def test_colors(setup):
     assert BLACK == (0, 0, 0)
 
 
-def test_set_up_display():
+def test_set_up_display(setup):
     # Act 
     pygame.display.set_mode((gameWidth, gameHeight)) 
     pygame.display.set_caption('Memory Game')
@@ -60,7 +60,7 @@ def test_pygame_mixer():
 
 
 
-def test_load_and_scale_image():
+def test_load_and_scale_image(setup):
 
   # Arrange
   game_width = 840
@@ -81,7 +81,7 @@ def test_load_and_scale_image():
   assert bg_rect.height == game_height
 
 
-def test_prepare_game_assets():
+def test_prepare_game_assets(setup):
     # Load memoryPictures from images folder
     memoryPictures = []
     for item in os.listdir('images'):
@@ -164,5 +164,6 @@ def test_game_loop(setup):
         break
         
     # Final asserts
+    
     assert screen
     assert pygame.quit

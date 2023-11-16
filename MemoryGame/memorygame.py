@@ -1,5 +1,6 @@
-import pygame, os, random, sys
+import pygame, os, random
 from pygame import mixer
+
 
 pygame.init()
 
@@ -21,20 +22,15 @@ selection1 = None
 selection2 = None
 score = 0
 
-
-
 # Loading the pygame screen.
 screen = pygame.display.set_mode((gameWidth, gameHeight))
 pygame.display.set_caption('Memory Game')
 gameIcon = pygame.image.load('images/brocoli.png')
 pygame.display.set_icon(gameIcon)
 
-
- 
-             
 #load the music
 mixer.music.load('bensound-summer_ogg_music.ogg')
-mixer.music.play(-1)
+mixer.music.play()
 sound =pygame.mixer.Sound('mixkit-clear-mouse-clicks.wav')
 # Load the BackGround image into Python
 bgImage = pygame.image.load('bground.png')
@@ -42,11 +38,7 @@ bgImage = pygame.transform.scale(bgImage, (gameWidth, gameHeight))
 bgImageRect = bgImage.get_rect()
 
 #dispay the score
-font = pygame.font.Font(None, 36)
-text_col = (0,0,255)
-def draw(text,font,texth_col, x, y):
-    img = font.render(text, True, text_col)
-    screen.blit(img, (x,y))
+
 
 
 # Create list of Memory Pictures
@@ -74,22 +66,19 @@ for i in range(len(memPicsRect)):
     memPicsRect[i][1] = topMargin + ((picSize + padding) * (i % gameRows))
     hiddenImages.append(False)
 
+
 print(memoryPictures)
 print(memPics)
 print(memPicsRect)
 print(hiddenImages)
 
-
-
 gameLoop = True
 while gameLoop:
-   
     # Load background image
     screen.blit(bgImage, bgImageRect)
     font = pygame.font.Font(None, 36)
     text = font.render("Score: " + str(score), 0, (10, 10, 10))
     screen.blit(text, (5,5))
-    
 
     # Input events
     for event in pygame.event.get():
@@ -114,9 +103,7 @@ while gameLoop:
             if memoryPictures[selection1] == memoryPictures[selection2]:
                 selection1, selection2 = None, None
                 score += 10 # Increment the score
-            
-
-       
+        
    
     for i in range(len(memoryPictures)):
         if hiddenImages[i] == True:
@@ -135,14 +122,18 @@ while gameLoop:
             hiddenImages[selection2] = False
             selection1, selection2 = None, None
 
-
     win = 1
     for number in range(len(hiddenImages)):
         win *= hiddenImages[number]
+        
+        
+
+    if win == 1:
+
+        gameLoop = False
     
     pygame.display.update()
-    
-    
+
 
 
 pygame.quit()
